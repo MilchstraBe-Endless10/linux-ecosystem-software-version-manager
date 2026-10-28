@@ -43,7 +43,7 @@ def validate(record: dict) -> None:
         raise ValueError('missing fields: ' + ', '.join(key for key in REQUIRED if key not in record))
     if record['schema_version'] != 1 or not isinstance(record['id'], str) or not ID.fullmatch(record['id']):
         raise ValueError('invalid schema version or ID')
-    if record['status'] not in STATUSES:
+    if not isinstance(record['status'], str) or record['status'] not in STATUSES:
         raise ValueError('invalid status')
     for key in ('title', 'component', 'symptom', 'root_cause', 'resolution', 'prevention', 'reviewer'):
         if not isinstance(record[key], str) or not record[key].strip():
