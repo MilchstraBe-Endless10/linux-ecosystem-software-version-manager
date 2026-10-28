@@ -127,3 +127,18 @@ authorized → queued → delegated → relay_reported
 
 - Codex 程序化能力：[Codex as a platform](https://developers.openai.com/blog/codex-as-a-platform)
 - GitHub Webhook：本阶段无需对外开放；未来如采用，应验证 `X-Hub-Signature-256` 并防止事件重放，见 [GitHub 官方指南](https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries)。
+
+## 8. 2026-10-28 实机阶段结果与安全门槛
+
+> **本节为后续实机验收增量记录，优先于前述“尚未运行”的历史状态描述。**
+>
+> 阶段结果：**核心闭环已实测、尚未全部验收**；Codex 结论 `changes_requested`。缺口参见 [SEC-001 #4](https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/4)。
+
+- Harness Relay 实际通过 `cline / reflection/beam-free / high` 执行了 DSH 子任务。代理层先回报 `succeeded`，但首轮摘要报告上下文耗尽、尚未写入；Codex 等原生会话确认不再运行后，**仅续接原会话一次，没有创建新任务**。
+- DSH 实现状态归约器和测试；Codex 独立复测为 **26/26**。Codex 实现桥接逻辑和测试，为 **12/12**。
+- 原生会话终态和两个来源的输出/文件指纹均经 Codex 报告核对；重放结果是 `duplicate`，没有二次事件和再次派发。
+- 一条脱敏的验收评论已在 [Issue #3](https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/3#issuecomment-6462413413) 核实存在；结果为 `changes_requested`，且源码尚未提交或公开。
+- **阻塞点**：当前 `writeScope` / `contextReadScope` 为任务约束，不是 OS 级强制隔离。只能证明 Codex 事后发现修改路径合规，**不能证明越权读取/写入在执行时受到拒绝**。
+- 依照 SEC-001，在真正执行 DSH 命令的进程/插件及其后代完成硬隔离、拒绝访问实测之前，本期 MVP 不得晋级为无人监督连续写入。允许 Codex 在授权范围内继续做只读能力检查和方案设计。
+- 注意：`running=false` 仅证明不再运行；必须结合最终原生状态、产物稳定和独立验收共同判断是否成功交付。上下文耗尽时不得将 `Relay succeeded` 单独当作成功。
+- GitHub 公开规范和本机私有项目是不同交付环境，本地尚缺此规范文件的情况已记录：应由 Codex 在授权的工作区按 GitHub 已公开版本同步，**不得因此把私有本地仓库历史直接推向公开仓库**。
