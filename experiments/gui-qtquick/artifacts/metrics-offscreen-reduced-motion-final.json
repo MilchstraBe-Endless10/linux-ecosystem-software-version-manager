@@ -1,0 +1,51 @@
+{
+    "actual_window_size_logical": {
+        "height": 720,
+        "width": 1280
+    },
+    "animation_active": false,
+    "average_fps": null,
+    "capture_size_pixels": {
+        "height": 720,
+        "width": 1280
+    },
+    "compact_navigation": true,
+    "duration_seconds": 4.162,
+    "frame_interval_max_ms": null,
+    "frame_interval_p95_ms": null,
+    "frame_sample_valid": false,
+    "frame_swaps": 37,
+    "model_build_ms": 9,
+    "peak_resident_memory_kib": 122600,
+    "process_cpu_percent_one_core": 4.267456463238828,
+    "qml_window_size_logical": {
+        "height": 720,
+        "width": 1280
+    },
+    "qt_platform": "offscreen",
+    "quick_content_item_size_logical": {
+        "height": 720,
+        "width": 1280
+    },
+    "records": 10000,
+    "reduced_motion": true,
+    "requested_window_size_logical": {
+        "height": 720,
+        "width": 1280
+    },
+    "screen_available_geometry_logical": {
+        "height": 800,
+        "width": 800,
+        "x": 0,
+        "y": 0
+    },
+    "screen_geometry_logical": {
+        "height": 800,
+        "width": 800,
+        "x": 0,
+        "y": 0
+    },
+    "stress_scroll": false,
+    "stress_scroll_animation_active": false,
+    "window_device_pixel_ratio": 1
+}

@@ -1,0 +1,84 @@
+{
+    "actual_window_size_logical": {
+        "height": 941,
+        "width": 1672
+    },
+    "animation_active": true,
+    "average_fps": 58.63591756624141,
+    "capture_size_pixels": {
+        "height": 941,
+        "width": 1672
+    },
+    "compact_navigation": false,
+    "compare_mode": false,
+    "duration_seconds": 4.076,
+    "frame_interval_max_ms": 191,
+    "frame_interval_p95_ms": 20,
+    "frame_interval_p99_ms": 29,
+    "frame_sample_valid": true,
+    "frame_swaps": 239,
+    "model_build_ms": 9,
+    "peak_resident_memory_kib": 127580,
+    "process_cpu_percent_one_core": 103.17762347890088,
+    "qml_window_size_logical": {
+        "height": 941,
+        "width": 1672
+    },
+    "qt_platform": "offscreen",
+    "quick_content_item_size_logical": {
+        "height": 941,
+        "width": 1672
+    },
+    "records": 10000,
+    "reduced_motion": false,
+    "requested_window_size_logical": {
+        "height": 941,
+        "width": 1672
+    },
+    "screen_available_geometry_logical": {
+        "height": 800,
+        "width": 800,
+        "x": 0,
+        "y": 0
+    },
+    "screen_geometry_logical": {
+        "height": 800,
+        "width": 800,
+        "x": 0,
+        "y": 0
+    },
+    "stress_scroll": false,
+    "stress_scroll_animation_active": false,
+    "window_device_pixel_ratio": 1,
+    "window_geometry_events": [
+        {
+            "elapsed_ms": 0,
+            "exposed": false,
+            "height": 941,
+            "visible": false,
+            "width": 1672,
+            "x": 0,
+            "y": 0
+        },
+        {
+            "elapsed_ms": 1,
+            "exposed": false,
+            "height": 941,
+            "visible": true,
+            "width": 1672,
+            "x": 2,
+            "y": 2
+        },
+        {
+            "elapsed_ms": 1,
+            "exposed": false,
+            "height": 941,
+            "visible": true,
+            "width": 1672,
+            "x": 2,
+            "y": 2
+        }
+    ],
+    "window_is_exposed": true,
+    "window_is_visible": true
+}

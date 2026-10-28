@@ -1,0 +1,102 @@
+{
+    "actual_window_size_logical": {
+        "height": 1030,
+        "width": 941
+    },
+    "animation_active": true,
+    "average_fps": 59.0665014456836,
+    "capture_size_pixels": {
+        "height": 1030,
+        "width": 941
+    },
+    "compact_navigation": true,
+    "compare_mode": false,
+    "duration_seconds": 12.105,
+    "frame_interval_max_ms": 175,
+    "frame_interval_p95_ms": 18,
+    "frame_interval_p99_ms": 19,
+    "frame_sample_valid": true,
+    "frame_swaps": 715,
+    "model_build_ms": 8,
+    "peak_resident_memory_kib": 210716,
+    "process_cpu_percent_one_core": 21.629146691449815,
+    "qml_window_size_logical": {
+        "height": 1030,
+        "width": 941
+    },
+    "qt_platform": "wayland",
+    "quick_content_item_size_logical": {
+        "height": 1030,
+        "width": 941
+    },
+    "records": 10000,
+    "reduced_motion": false,
+    "requested_window_size_logical": {
+        "height": 941,
+        "width": 1672
+    },
+    "screen_available_geometry_logical": {
+        "height": 1080,
+        "width": 1920,
+        "x": 0,
+        "y": 0
+    },
+    "screen_geometry_logical": {
+        "height": 1080,
+        "width": 1920,
+        "x": 0,
+        "y": 0
+    },
+    "stress_scroll": true,
+    "stress_scroll_animation_active": true,
+    "window_device_pixel_ratio": 1,
+    "window_geometry_events": [
+        {
+            "elapsed_ms": 0,
+            "exposed": false,
+            "height": 941,
+            "visible": false,
+            "width": 1672,
+            "x": 0,
+            "y": 0
+        },
+        {
+            "elapsed_ms": 2,
+            "exposed": false,
+            "height": 1034,
+            "visible": true,
+            "width": 950,
+            "x": 0,
+            "y": 0
+        },
+        {
+            "elapsed_ms": 2,
+            "exposed": false,
+            "height": 1034,
+            "visible": true,
+            "width": 950,
+            "x": 0,
+            "y": 0
+        },
+        {
+            "elapsed_ms": 96,
+            "exposed": true,
+            "height": 1030,
+            "visible": true,
+            "width": 941,
+            "x": 0,
+            "y": 0
+        },
+        {
+            "elapsed_ms": 96,
+            "exposed": true,
+            "height": 1030,
+            "visible": true,
+            "width": 941,
+            "x": 0,
+            "y": 0
+        }
+    ],
+    "window_is_exposed": true,
+    "window_is_visible": true
+}
