@@ -1,0 +1,25 @@
+name: Read-only Linux inventory fixture tests
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/inventory/read-only-001/**'
+      - '.github/workflows/inventory-001.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/inventory/read-only-001/**'
+      - '.github/workflows/inventory-001.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Offline metadata parsing tests
+        run: python3 -m unittest discover -s experiments/inventory/read-only-001 -p 'test_*.py' -v
