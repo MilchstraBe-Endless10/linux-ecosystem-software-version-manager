@@ -5,7 +5,7 @@ import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-from experience_kb import validate, search, handoff, load_records
+from experience_kb import DEFAULT, validate, search, handoff, load_records
 
 
 def record(**changes):
@@ -26,6 +26,21 @@ def record(**changes):
 class Tests(unittest.TestCase):
     def test_valid_verified(self):
         validate(record())
+
+    def test_malformed_status_fails_validation_without_crash(self):
+        # Unhashable status must fail closed with ValueError, not TypeError.
+        for bad in ([], {}, None, 42):
+            with self.subTest(status=repr(bad)):
+                with self.assertRaises(ValueError):
+                    validate(record(status=bad))
+
+    def test_public_records_do_not_handoff_unverified_incidents(self):
+        # Prevent a green unit-test build from laundering weak evidence
+        # into a real DSH memory handoff.
+        records = load_records(DEFAULT)
+        self.assertEqual(len(records), 5)
+        self.assertTrue(all(item['status'] == 'candidate' for item in records))
+        self.assertEqual(handoff(records)['entries'], [])
 
     def test_missing(self):
         x = record()
