@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "BUG-2026-004",
+  "title": "Wayland requested geometry differs from mapped window",
+  "component": "gui-wayland",
+  "status": "candidate",
+  "symptom": "Requested 1672x941 and 1280x720 resulted in the same mapped 941x1030 window; target-size benchmark was invalid.",
+  "root_cause": "unconfirmed",
+  "resolution": "Capture compositor clients/workspaces/rules and Qt resize events; compare approved floating and tiled test windows before changing geometry logic.",
+  "prevention": "Native benchmarks must record requested size, actual mapped size, screenshot pixels, scale and compositor state.",
+  "references": [
+    "https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/8"
+  ],
+  "tags": [
+    "wayland",
+    "window",
+    "geometry",
+    "hyprland",
+    "size",
+    "941x1030",
+    "尺寸"
+  ],
+  "verification": [],
+  "reviewer": "pending"
+}
