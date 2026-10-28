@@ -35,3 +35,10 @@ The GUI is a visual mockup. Its controls do not execute installation or update a
 ## Collaboration model
 
 Codex owns visual direction, GUI integration, review, and final acceptance. DSH works only on explicitly delegated tasks through Harness Relay. See AGENTS.md and the documents under docs/ for the current collaboration and architecture notes.
+
+## Codex × DeepSeek Harness: approved minimum orchestration PoC
+
+- [ORCH-001 MVP implementation spec](docs/ORCH-001_MVP_IMPLEMENTATION_SPEC.md)
+- [Implementation work item #3](https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/3) · [overall orchestration plan #2](https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/2)
+- Scope: **one bounded mock task**, DSH native completion → structured Codex handoff → independent Codex validation → sanitized GitHub audit comment. Codex owns final acceptance.
+- This is **approved for implementation, not yet deployed or verified**. Autonomous backlog consumption, automatic merging, privileged system operations and publishing private assets remain out of scope.
