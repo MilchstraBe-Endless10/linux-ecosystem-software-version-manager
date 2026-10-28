@@ -1,0 +1,33 @@
+name: Engineering knowledge validation
+
+on:
+  pull_request:
+    paths:
+      - 'docs/engineering-knowledge/**'
+      - 'docs/CODEX_DSH_DEBUG_LEARNING_LOOP.md'
+      - 'tools/experience_kb.py'
+      - 'tests/test_experience_kb.py'
+      - '.github/workflows/knowledge-validation.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'docs/engineering-knowledge/**'
+      - 'docs/CODEX_DSH_DEBUG_LEARNING_LOOP.md'
+      - 'tools/experience_kb.py'
+      - 'tests/test_experience_kb.py'
+      - '.github/workflows/knowledge-validation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  incident-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run isolated incident unit tests
+        run: python3 -m unittest discover -s tests -p 'test_experience_kb.py' -v
+      - name: Validate sanitized public experience records
+        run: python3 tools/experience_kb.py validate
