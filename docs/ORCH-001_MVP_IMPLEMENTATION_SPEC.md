@@ -1,7 +1,7 @@
 # ORCH-001 MVP：Codex ↔ DSH 任务结果闭环（实施契约 v0.1）
 
 **状态：获产品负责人批准启动最小闭环的受控实施；尚未部署、尚未实机通过。**  
-**父任务：** [ORCH-001 #2](../issues/2) ｜ **实现任务：** [ORCH-001-MVP #3](../issues/3)  
+**父任务：** [ORCH-001 #2](https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/2) ｜ **实现任务：** [ORCH-001-MVP #3](https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/3)  
 **维护负责人：** Codex（设计、调度、集成、验收）  
 **执行协作者：** DeepSeek Harness（DSH），经现有 Harness Relay 受控调度
 
