@@ -97,41 +97,13 @@ ApplicationWindow {
         }
     }
 
-    Repeater {
-        model: 18
-        delegate: Item {
-            required property int index
-            width: 14
-            height: 18
-            x: root.navWidth + 30 + ((index * 137) % Math.max(160, root.width - root.navWidth - 70))
-            y: -20 - (index % 5) * 34
-            z: 2
-            Rectangle {
-                anchors.centerIn: parent
-                width: index % 3 === 0 ? 10 : 7
-                height: index % 4 === 0 ? 14 : 10
-                radius: 8
-                rotation: index * 31
-                color: index % 2 === 0 ? "#f7b7e7" : "#ffe9f4"
-                opacity: 0.68
-            }
-            NumberAnimation on y {
-                running: root.sceneRunning
-                loops: Animation.Infinite
-                from: -24 - (index % 5) * 34
-                to: root.height + 30
-                duration: 9000 + (index % 7) * 1100
-                easing.type: Easing.Linear
-            }
-            NumberAnimation on x {
-                running: root.sceneRunning
-                loops: Animation.Infinite
-                from: root.navWidth + 30 + ((index * 137) % Math.max(160, root.width - root.navWidth - 70))
-                to: root.navWidth + 54 + ((index * 137) % Math.max(160, root.width - root.navWidth - 70))
-                duration: 7000 + (index % 4) * 900
-                easing.type: Easing.InOutSine
-            }
-        }
+    // Shared GPU particle system; stops when reduced motion is enabled or hidden.
+    LightMotes {
+        anchors.fill: parent
+        anchors.leftMargin: root.navWidth
+        z: 2
+        running: root.sceneRunning
+        density: root.width < 1320 ? 4 : 7
     }
 
     Rectangle {
@@ -380,6 +352,19 @@ ApplicationWindow {
             border.width: 1
             rotation: 12
             opacity: 0.7
+        }
+
+        // Original V3.0 energy centerpiece: QtQuick.Effects and animated rings.
+        // Narrow layouts keep the mock list and controls unobstructed.
+        MagicCore {
+            id: energyCore
+            x: orbitalStage.width * 0.37 - width / 2
+            y: orbitalStage.height * 0.52 - height / 2
+            width: root.width < 1450 ? 142 : 200
+            height: root.width < 1450 ? 136 : 190
+            compact: root.width < 1450
+            visible: root.width >= 1120
+            running: root.sceneRunning && visible
         }
 
         Repeater {
