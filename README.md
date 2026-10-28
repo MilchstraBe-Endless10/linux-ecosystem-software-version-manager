@@ -42,3 +42,10 @@ Codex owns visual direction, GUI integration, review, and final acceptance. DSH 
 - [Implementation work item #3](https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/3) · [overall orchestration plan #2](https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/2)
 - Scope: **one bounded mock task**, DSH native completion → structured Codex handoff → independent Codex validation → sanitized GitHub audit comment. Codex owns final acceptance.
 - This is **approved for implementation, not yet deployed or verified**. Autonomous backlog consumption, automatic merging, privileged system operations and publishing private assets remain out of scope.
+
+## P0 Active work: GUI fidelity + backend in parallel
+
+- **GUI-FINAL-001 [#8](https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/8)** — match the approved private V3.0 visual reference (compositing, hero alpha, central orb, full detail/table interactions) with native Wayland screenshot evidence. The new generated art remains private until license review.
+- **BACKEND-CORE-001 [#9](https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/9)** — build the installation-instance model and Qt DTO contract in parallel; Codex reviews the existing [Flatpak adapter PR #6](https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/pull/6) and can supervise bounded DSH pure-function tasks.
+- **SEC-001 [#4](https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/4)** remains open: one synthetic bubblewrap probe execution path was observed, but not every tool path and not OS-level denial behavior. It blocks **unattended continuous DSH writes**, not ordinary supervised development.
+- **Task recovery**: Codex should restore all open threads from the local `docs/ACTIVE_WORK.md` before execution. Never mark an uncommitted private module as published or upload private project history/assets by accident.
