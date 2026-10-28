@@ -6,11 +6,13 @@
 
 | 记录 | 类型 | 状态 | 待补证据 |
 | --- | --- | --- | --- |
-| BUG-2026-001 | Relay 提前 succeeded | **verified**（Codex 已有独立验收记录） | 具体适用的 Relay/provider 版本继续标记 |
+| BUG-2026-001 | Relay 提前 succeeded（事件顺序尚未证实） | **candidate** | 缺少同一 run 的有序 Relay 与原生 Harness 状态证据；不得据此写入 DSH 记忆 |
 | BUG-2026-002 | SEC B1 探针换行 | candidate | 综合原生会话和顺序验收尚未完成 |
 | BUG-2026-003 | 静态 PNG 不是交互 QML | candidate | GUI 原生可交互验收 |
 | BUG-2026-004 | Wayland 实际几何偏移 | candidate | compositor 根因确认 |
 | BUG-2026-005 | mock 软件与字形图标 | candidate | 本地 Qt GUI 全链路集成验收 |
+
+> **2026-10-28 本机复核纠偏：** BUG-2026-001 所引 Issue #3 证明了相关模块的局部测试结果，却不能证明「Relay succeeded 时原生 Harness 会话仍在运行」的同一任务时间顺序。公开分支已降级为候选经验，**当前 5 条均为 candidate，`handoff.entries` 应为空**。即使全部单元测试通过，也不能把未经证据证明的根因提升为已验证事实。
 
 这些状态是对**故障修复证据成熟度**的描述，不等于对应 GitHub Issue 已关闭。对已知“局部修复已测试，但系统整体没过验收”的案例仍保持 `candidate`，避免经验库放大误判。
 
