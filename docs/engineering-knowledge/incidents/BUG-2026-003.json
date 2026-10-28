@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "BUG-2026-003",
+  "title": "Static pixel-perfect preview is not interactive QML",
+  "component": "gui-qtquick",
+  "status": "candidate",
+  "symptom": "Approved screenshot can be displayed at zero pixel error while interactive tabs, widgets and animation remain missing.",
+  "root_cause": "The default screenshot preview and the interactive QML prototype are separate rendering paths.",
+  "resolution": "Use native interactive capture plus click/drag tests, dynamic-effect evidence and real-size Wayland screenshot comparison; never count static-image MAE as QML acceptance.",
+  "prevention": "Separate visual-preview and interactive-functional acceptance reports for every GUI change.",
+  "references": [
+    "https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/8"
+  ],
+  "tags": [
+    "gui",
+    "qml",
+    "visual",
+    "screenshot",
+    "pixel",
+    "动态",
+    "界面"
+  ],
+  "verification": [],
+  "reviewer": "pending"
+}
