@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "BUG-2026-005",
+  "title": "Synthetic catalog and glyph icons incorrectly represented reality",
+  "component": "inventory",
+  "status": "candidate",
+  "symptom": "The public PoC generated 10000 mock package rows and used Unicode glyphs as if they were software icons.",
+  "root_cause": "Synthetic model was used as the default data source and icon metadata was absent.",
+  "resolution": "Use local pacman and XDG metadata, preserve desktop Icon provenance; isolate stress data behind explicit stress mode; target-host GUI integration remains unverified.",
+  "prevention": "Mock counts need clear labels, update state stays unknown until checked and icon identity must come from actual desktop metadata.",
+  "references": [
+    "https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/11"
+  ],
+  "tags": [
+    "inventory",
+    "mock",
+    "real-icon",
+    "pacman",
+    "xdg",
+    "图标",
+    "软件清单"
+  ],
+  "verification": [],
+  "reviewer": "pending"
+}

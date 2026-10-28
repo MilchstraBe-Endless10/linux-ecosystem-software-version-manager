@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "id": "BUG-2026-002",
+  "title": "B1 synthetic probe newline mismatch",
+  "component": "security-test",
+  "status": "candidate",
+  "symptom": "Single synthetic probe exited early because the fixture and probe both appended a line ending; observer missed the process tree.",
+  "root_cause": "The fixture already contained a line ending while the probe assumed no trailing newline.",
+  "resolution": "Accept exactly one optional LF or CRLF; reject double newline; emit READY before bounded observation, write once. Offline tests passed, but complete live task sequencing remains open.",
+  "prevention": "Byte-for-byte fixture contract and end-to-end check of observation interval before dispatch.",
+  "references": [
+    "https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/4"
+  ],
+  "tags": [
+    "sec-001",
+    "fixture",
+    "newline",
+    "probe",
+    "换行",
+    "观测"
+  ],
+  "verification": [],
+  "reviewer": "pending"
+}

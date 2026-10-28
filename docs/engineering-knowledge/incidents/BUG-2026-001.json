@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "id": "BUG-2026-001",
+  "title": "Reported Relay succeeded before native session completion (unverified)",
+  "component": "relay",
+  "status": "candidate",
+  "symptom": "A discrepancy between Relay run status and the Harness native session lifecycle was reported; available cited evidence does not establish the exact timestamped ordering for the same run.",
+  "root_cause": "unconfirmed",
+  "resolution": "Investigate using correlated timestamps and IDs for exactly one Relay run and its native Harness session; confirm native terminal state and stable artifacts before accepting or retrying. This is a proposed safeguard, not a verified repair of the reported ordering defect.",
+  "prevention": "Regression test must reproduce the same run's Relay succeeded event before a later native running=false event; enforce idempotent handoff and independent Codex verification only after that evidence is captured.",
+  "references": [
+    "https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/3#issuecomment-6462413413",
+    "https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/13#issuecomment-6470777025"
+  ],
+  "tags": [
+    "relay",
+    "native-session",
+    "status",
+    "succeeded",
+    "completion",
+    "幂等",
+    "终态"
+  ],
+  "verification": [],
+  "reviewer": "pending"
+}
