@@ -49,3 +49,11 @@ Codex owns visual direction, GUI integration, review, and final acceptance. DSH 
 - **BACKEND-CORE-001 [#9](https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/9)** — build the installation-instance model and Qt DTO contract in parallel; Codex reviews the existing [Flatpak adapter PR #6](https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/pull/6) and can supervise bounded DSH pure-function tasks.
 - **SEC-001 [#4](https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/4)** remains open: one synthetic bubblewrap probe execution path was observed, but not every tool path and not OS-level denial behavior. It blocks **unattended continuous DSH writes**, not ordinary supervised development.
 - **Task recovery**: Codex should restore all open threads from the local `docs/ACTIVE_WORK.md` before execution. Never mark an uncommitted private module as published or upload private project history/assets by accident.
+
+## Engineering knowledge and Codex–DSH learning loop
+
+- [Evidence-first incident workflow](docs/CODEX_DSH_DEBUG_LEARNING_LOOP.md): Codex looks up prior cases, researches authoritative sources, delegates bounded fixes to DSH, independently verifies, then records prevention.
+- [Versioned incident knowledge library](docs/engineering-knowledge/README.md): verified vs candidate incidents, CLI search/validate and reviewable DSH memory handoff.
+- `python3 tools/experience_kb.py search "wayland geometry"` · `python3 tools/experience_kb.py validate` · `python3 tools/experience_kb.py handoff`
+- [KNOWLEDGE-001 #13](https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/13): real DSH memory query/remember integration and independent host proof remain to be implemented. Generating a handoff bundle does **not** prove DSH memory was written.
+- Preserve separate local `docs/ACTIVE_WORK.md` and private Soul/Mnemon; do not push private workspace history or raw incident logs.
