@@ -2,6 +2,12 @@
 
 This public repository is a reviewed project snapshot. It contains planning documents, a Qt Quick/QML + C++ GUI prototype, and selected numeric measurements. The prototype uses synthetic records only; it does not connect to package managers or perform real updates.
 
+## 最新项目进度与协作任务
+
+- [V3.6 公开状态、Qt Quick 技术验证和 Codex → DSH 协作任务](docs/PROJECT_STATUS_V3.6_PUBLIC.md)
+- 完整 PRD 的内部版本与公开审查版本采取分离管理：敏感路径、Relay 会话、私有记忆、未完成许可审查的动漫素材不得直接公开。
+- Codex 主导 UI/动画与代码验收；DeepSeek Harness 通过受控 Relay 写入任务参与纯函数、适配器和测试开发。
+
 ## Current status
 
 Qt Quick/QML + C++ remains a conditional PoC candidate. The desktop tests requested 1672×941 and 1280×720, but both native Wayland windows were resized after mapping to 941×1030. The captured geometry events show the requested size before display and a different compositor-provided size after display. Target-size layout was checked offscreen, but has not yet been validated in native Wayland at both requested sizes.
