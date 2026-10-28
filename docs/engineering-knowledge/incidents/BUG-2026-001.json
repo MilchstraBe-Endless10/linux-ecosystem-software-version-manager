@@ -1,15 +1,16 @@
 {
   "schema_version": 1,
   "id": "BUG-2026-001",
-  "title": "Relay reported success while native session remained active",
+  "title": "Reported Relay succeeded before native session completion (unverified)",
   "component": "relay",
-  "status": "verified",
-  "symptom": "Provider-layer succeeded signal preceded reliable native task completion.",
-  "root_cause": "Relay run completion does not imply the underlying Harness native session has reached terminal state.",
-  "resolution": "Correlate precise run with native session and stable artifacts; Codex independently reviews diff and tests; retain an idempotency key and never re-dispatch on an early succeeded event.",
-  "prevention": "Two-stage terminal gate, stable artifacts, deduplicated events and fail-closed when native status is unavailable.",
+  "status": "candidate",
+  "symptom": "A discrepancy between Relay run status and the Harness native session lifecycle was reported; available cited evidence does not establish the exact timestamped ordering for the same run.",
+  "root_cause": "unconfirmed",
+  "resolution": "Investigate using correlated timestamps and IDs for exactly one Relay run and its native Harness session; confirm native terminal state and stable artifacts before accepting or retrying. This is a proposed safeguard, not a verified repair of the reported ordering defect.",
+  "prevention": "Regression test must reproduce the same run's Relay succeeded event before a later native running=false event; enforce idempotent handoff and independent Codex verification only after that evidence is captured.",
   "references": [
-    "https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/3#issuecomment-6462413413"
+    "https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/3#issuecomment-6462413413",
+    "https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/13#issuecomment-6470777025"
   ],
   "tags": [
     "relay",
@@ -20,11 +21,6 @@
     "幂等",
     "终态"
   ],
-  "verification": [
-    {
-      "method": "Codex independently reviewed changes, reported 26 state tests and 12 bridge tests and recorded the conclusion in Issue #3",
-      "result": "passed"
-    }
-  ],
-  "reviewer": "Codex"
+  "verification": [],
+  "reviewer": "pending"
 }
