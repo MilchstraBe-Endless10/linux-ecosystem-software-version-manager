@@ -1,0 +1,29 @@
+name: Flatpak mock adapter C++17 checks
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/adapters/flatpak-001/**'
+      - '.github/workflows/flatpak-001.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/adapters/flatpak-001/**'
+      - '.github/workflows/flatpak-001.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cmake-ctest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: cmake -S experiments/adapters/flatpak-001 -B build/flatpak-001 -DCMAKE_BUILD_TYPE=Release
+      - name: Build
+        run: cmake --build build/flatpak-001 --parallel
+      - name: Test
+        run: ctest --test-dir build/flatpak-001 --output-on-failure

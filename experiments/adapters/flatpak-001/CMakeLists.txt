@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.16)
+project(flatpak_mock_adapter LANGUAGES CXX)
+
+enable_testing()
+add_library(flatpak_snapshot STATIC flatpak_snapshot.cpp)
+target_compile_features(flatpak_snapshot PUBLIC cxx_std_17)
+target_include_directories(flatpak_snapshot PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+  target_compile_options(flatpak_snapshot PRIVATE -Wall -Wextra -Wpedantic)
+endif()
+add_executable(flatpak_snapshot_tests tests.cpp)
+target_link_libraries(flatpak_snapshot_tests PRIVATE flatpak_snapshot)
+add_test(NAME flatpak_snapshot_tests COMMAND flatpak_snapshot_tests)
