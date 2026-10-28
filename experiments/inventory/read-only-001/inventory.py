@@ -39,7 +39,11 @@ def scan_pacman(root: Path) -> tuple[list[dict], dict[str, str], list[str]]:
     packages, owners, warnings = [], {}, []
     if not root.is_dir() or root.is_symlink():
         return packages, owners, ["pacman database unavailable"]
-    for i, folder in enumerate(sorted(root.iterdir())):
+    try:
+        children = sorted(root.iterdir())
+    except OSError:
+        return packages, owners, ["pacman database could not be enumerated"]
+    for i, folder in enumerate(children):
         if i >= MAX_PER_ROOT:
             warnings.append("pacman scan limit reached")
             break
@@ -111,7 +115,12 @@ def scan_desktop(roots: list[tuple[Path, str]], package_owners: dict[str, str]) 
         directory = root / "applications"
         if not directory.is_dir() or directory.is_symlink():
             continue
-        for i, path in enumerate(sorted(directory.glob("*.desktop"))):
+        try:
+            candidates = sorted(directory.glob("*.desktop"))
+        except OSError:
+            warnings.append("desktop directory could not be enumerated")
+            continue
+        for i, path in enumerate(candidates):
             if i >= MAX_PER_ROOT:
                 warnings.append("desktop entry scan limit reached")
                 break
