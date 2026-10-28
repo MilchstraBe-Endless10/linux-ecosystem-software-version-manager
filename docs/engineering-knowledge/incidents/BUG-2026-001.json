@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "id": "BUG-2026-001",
+  "title": "Relay reported success while native session remained active",
+  "component": "relay",
+  "status": "verified",
+  "symptom": "Provider-layer succeeded signal preceded reliable native task completion.",
+  "root_cause": "Relay run completion does not imply the underlying Harness native session has reached terminal state.",
+  "resolution": "Correlate precise run with native session and stable artifacts; Codex independently reviews diff and tests; retain an idempotency key and never re-dispatch on an early succeeded event.",
+  "prevention": "Two-stage terminal gate, stable artifacts, deduplicated events and fail-closed when native status is unavailable.",
+  "references": [
+    "https://github.com/MilchstraBe-Endless10/linux-ecosystem-software-version-manager/issues/3#issuecomment-6462413413"
+  ],
+  "tags": [
+    "relay",
+    "native-session",
+    "status",
+    "succeeded",
+    "completion",
+    "幂等",
+    "终态"
+  ],
+  "verification": [
+    {
+      "method": "Codex independently reviewed changes, reported 26 state tests and 12 bridge tests and recorded the conclusion in Issue #3",
+      "result": "passed"
+    }
+  ],
+  "reviewer": "Codex"
+}
