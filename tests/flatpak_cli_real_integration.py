@@ -85,7 +85,8 @@ def make_app(root: Path, env: dict[str, str], repo: Path, branch: str,
     executable = build / "files" / "bin" / "hello.sh"
     executable.write_text(f"#!/bin/sh\nprintf '%s\\n' '{payload}'\n", encoding="utf-8")
     executable.chmod(0o755)
-    run(["flatpak", "build-finish", "--command=hello.sh", str(build)], env)
+    if not reexport:
+        run(["flatpak", "build-finish", "--command=hello.sh", str(build)], env)
     run(["flatpak", "build-export", "--disable-sandbox", "--no-update-summary",
          str(repo), str(build), branch], env)
     return build
