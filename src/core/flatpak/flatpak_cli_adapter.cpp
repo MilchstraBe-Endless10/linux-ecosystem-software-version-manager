@@ -718,7 +718,7 @@ ecosystem::core::ScanSnapshot FlatpakCliAdapter::discover_instances(
     }
 
     for (const auto &installation : named_installations) {
-        if (discovered_named_installations.contains(installation))
+        if (discovered_named_installations.find(installation) != discovered_named_installations.end())
             continue;
         QStringList arguments = flatpakListArguments;
         arguments.push_back(
@@ -907,7 +907,7 @@ ecosystem::core::ScanSnapshot FlatpakCliAdapter::discover_candidates(
                 continue;
             }
             const InstalledInstance &instance = *installed->second;
-            if (ambiguousIds.contains(instance.instance_id.value)) {
+            if (ambiguousIds.find(instance.instance_id.value) != ambiguousIds.end()) {
                 addError(SourceErrorCode::duplicate_identity,
                          "Flatpak remote update matches multiple installed refs", false);
                 continue;
@@ -978,13 +978,13 @@ ecosystem::core::ScanSnapshot FlatpakCliAdapter::discover_candidates(
         }
 
         for (const auto *instance : group.instances) {
-            if (ambiguousIds.contains(instance->instance_id.value)) {
+            if (ambiguousIds.find(instance->instance_id.value) != ambiguousIds.end()) {
                 result.update_checks.push_back({instance->instance_id,
                     UpdateCheckStatus::unavailable, evidenceFor(*instance)});
                 continue;
             }
-            if (!candidateIds.contains(instance->instance_id.value)
-                && !seenUpdateRefs.contains(instance->instance_id.value)) {
+            if (candidateIds.find(instance->instance_id.value) == candidateIds.end()
+                && seenUpdateRefs.find(instance->instance_id.value) == seenUpdateRefs.end()) {
                 result.update_checks.push_back({instance->instance_id,
                     UpdateCheckStatus::no_candidate, evidenceFor(*instance)});
             }
