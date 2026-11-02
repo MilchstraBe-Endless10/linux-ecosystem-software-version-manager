@@ -53,11 +53,10 @@ def make_runtime(root: Path, env: dict[str, str], repo: Path) -> None:
     (runtime / "files").mkdir(parents=True)
     (runtime / "usr" / "bin").mkdir(parents=True)
     (runtime / "var").mkdir()
-    arch = run(["flatpak", "--default-arch"], env).stdout.strip()
+    # Match Flatpak's own synthetic runtime fixture metadata: a base runtime
+    # identifies itself by name and does not declare itself as its own SDK/runtime.
     (runtime / "metadata").write_text(
-        f"[Runtime]\nname={RUNTIME_ID}\n"
-        f"runtime={RUNTIME_ID}/{arch}/stable\n"
-        f"sdk={RUNTIME_ID}/{arch}/stable\n",
+        f"[Runtime]\nname={RUNTIME_ID}\n",
         encoding="utf-8",
     )
     run(["flatpak", "build-export", "--no-update-summary", "--runtime",
