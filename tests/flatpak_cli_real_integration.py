@@ -68,9 +68,21 @@ def make_app(root: Path, env: dict[str, str], repo: Path, branch: str,
              payload: str, *, reexport: bool = False) -> Path:
     build = root / f"app-build-{branch}"
     if not reexport:
-        run(["flatpak", "build-init", str(build), APP_ID, RUNTIME_ID,
-             RUNTIME_ID, branch], env)
-        (build / "files" / "bin").mkdir(parents=True, exist_ok=True)
+        # build-init requires an SDK already installed in a Flatpak installation.
+        # This fixture tests repository install/update behavior, not SDK setup, so
+        # create the minimal build metadata directly and keep all Flatpak export,
+        # install, discovery, and update-query operations on the real CLI.
+        build.mkdir(parents=True)
+        (build / "files" / "bin").mkdir(parents=True)
+        (build / "var").mkdir()
+        arch = run(["flatpak", "--default-arch"], env).stdout.strip()
+        (build / "metadata").write_text(
+            "[Application]\n"
+            f"name={APP_ID}\n"
+            f"runtime={RUNTIME_ID}/{arch}/stable\n"
+            f"sdk={RUNTIME_ID}/{arch}/stable\n",
+            encoding="utf-8",
+        )
     executable = build / "files" / "bin" / "hello.sh"
     executable.write_text(f"#!/bin/sh\nprintf '%s\\n' '{payload}'\n", encoding="utf-8")
     executable.chmod(0o755)
@@ -78,7 +90,6 @@ def make_app(root: Path, env: dict[str, str], repo: Path, branch: str,
     run(["flatpak", "build-export", "--disable-sandbox", "--no-update-summary",
          str(repo), str(build), branch], env)
     return build
-
 
 def tree_files(root: Path) -> dict[str, tuple[str, str]]:
     result: dict[str, tuple[str, str]] = {}
