@@ -204,11 +204,27 @@ def main() -> int:
         make_app(root, env, dirs["repo"], "beta", "unchanged beta payload")
         run(["flatpak", "build-update-repo", "--no-update-appstream", str(dirs["repo"])], env)
 
+        arch = run(["flatpak", "--default-arch"], env).stdout.strip()
+        expected_runtime_ref = f"runtime/{RUNTIME_ID}/{arch}/stable"
+        repo_refs = run(["flatpak", "repo", "--branches", str(dirs["repo"])], env).stdout
+        if expected_runtime_ref not in repo_refs:
+            raise AssertionError(
+                f"synthetic OSTree repo is missing {expected_runtime_ref!r}: {repo_refs!r}"
+            )
+
         server, thread, remote_url = start_local_repo_server(root)
         try:
             for scope in ("user", "system"):
                 run(["flatpak", "remote-add", f"--{scope}", "--no-gpg-verify",
                      "--no-enumerate", REMOTE, remote_url], env)
+            remote_runtime_refs = run([
+                "flatpak", "remote-ls", "--user", "--runtime", "--columns=ref", REMOTE,
+            ], env).stdout
+            if expected_runtime_ref not in remote_runtime_refs:
+                raise AssertionError(
+                    f"synthetic remote is missing {expected_runtime_ref!r}: "
+                    f"{remote_runtime_refs!r}"
+                )
             run(["flatpak", "install", "--user", "--assumeyes", REMOTE,
                  f"{APP_ID}//stable"], env)
             run(["flatpak", "install", "--user", "--assumeyes", REMOTE,
