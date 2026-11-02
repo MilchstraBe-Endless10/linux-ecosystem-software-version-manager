@@ -113,7 +113,9 @@ whose Launchpad signing-key fingerprint is
 `5C6D153A17C02C337EF6C663B8B9D41229DFA5F5`, logs `apt-cache policy flatpak`
 to retain the selected repository and version in the Actions log, installs the exact package
 `1.18.4-1~flatpak1~24.04.1`, and asserts `flatpak --version` is `Flatpak 1.18.4`
-before configuring or running tests. It then runs the focused Flatpak/Core/Qt
+before configuring or running tests. Qt 6.8's Linux desktop architecture is
+`linux_gcc_64` (Qt 6.7 and later naming), not the older `gcc_64` identifier.
+It then runs the focused Flatpak/Core/Qt
 CTest suite and the real CLI fixture in a bubblewrap network namespace with
 loopback as its only network interface. The first hosted workflow run is still
 required to validate the CI environment itself.
