@@ -1,0 +1,73 @@
+name: Flatpak CLI integration
+
+on:
+  pull_request:
+    paths:
+      - 'src/core/flatpak/**'
+      - 'src/core/model/**'
+      - 'tests/flatpak-cli-ci/**'
+      - 'tests/flatpak_cli_real_integration.*'
+      - '.github/workflows/flatpak-cli-integration.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'src/core/flatpak/**'
+      - 'src/core/model/**'
+      - 'tests/flatpak-cli-ci/**'
+      - 'tests/flatpak_cli_real_integration.*'
+      - '.github/workflows/flatpak-cli-integration.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  flatpak-real-cli:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Flatpak 1.18.4 and sandbox tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y software-properties-common
+          sudo add-apt-repository --yes ppa:flatpak/stable
+          sudo apt-get update
+          apt-cache policy flatpak
+          sudo apt-get install -y flatpak=1.18.4-1~flatpak1~24.04.1 bubblewrap iproute2
+
+      - name: Assert Flatpak version before build and tests
+        run: flatpak --version | grep -Fx 'Flatpak 1.18.4'
+
+      - name: Permit bubblewrap user namespaces in the ephemeral runner
+        run: |
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+          sudo systemctl reload apparmor
+
+      - uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.8.3'
+          host: 'linux'
+          target: 'desktop'
+          arch: 'gcc_64'
+
+      - name: Configure Release build
+        run: cmake -S tests/flatpak-cli-ci -B build/flatpak-cli-ci -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build Flatpak adapter, Core/Qt model, and real CLI integration driver
+        run: cmake --build build/flatpak-cli-ci --parallel 2
+
+      - name: Run Flatpak/Core/Qt regression suite
+        run: ctest --test-dir build/flatpak-cli-ci --output-on-failure
+
+      - name: Run Flatpak 1.18.4 against isolated synthetic installations
+        run: |
+          bwrap \
+            --unshare-user --uid 0 --gid 0 \
+            --unshare-pid --unshare-net \
+            --ro-bind / / \
+            --tmpfs /tmp \
+            --proc /proc --dev /dev \
+            --chdir "$GITHUB_WORKSPACE" \
+            /bin/bash -euc 'ip link set lo up; python3 tests/flatpak_cli_real_integration.py --test-executable build/flatpak-cli-ci/flatpak_cli_real_integration_tests'
