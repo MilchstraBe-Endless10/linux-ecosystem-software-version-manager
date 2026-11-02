@@ -216,7 +216,7 @@ def main() -> int:
         try:
             for scope in ("user", "system"):
                 run(["flatpak", "remote-add", f"--{scope}", "--no-gpg-verify",
-                     "--no-enumerate", REMOTE, remote_url], env)
+                     REMOTE, remote_url], env)
             remote_runtime_refs = run([
                 "flatpak", "remote-ls", "--user", "--runtime", "--columns=ref", REMOTE,
             ], env).stdout
