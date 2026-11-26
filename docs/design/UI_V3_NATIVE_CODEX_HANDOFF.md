@@ -1,6 +1,8 @@
 # V3.0 原生 UI 交付任务 — 高保真参考基线修订（2026-11-24）
 
-> **2026-11-25 优先级修订：暂停其他七页视觉改造，先完成批准 V3.0 工作台首页。当前唯一执行入口为 [HOMEPAGE_ASSET_MOTION_IMPLEMENTATION.md](HOMEPAGE_ASSET_MOTION_IMPLEMENTATION.md)，包含具体素材制作软件、Blender 制作流程、Qt Shader/动画接线和验收。以下旧页面开发顺序仅作历史交接，不得作为当前任务执行；素材登记和安全约束仍有效。**
+> **2026-11-26：当前持续执行入口为 [FRONTEND_COMPLETION_GOAL.md](FRONTEND_COMPLETION_GOAL.md)。使用 Codex `/goal` 保留完成目标；本文件提供既有技术/资产依据，不再作为独立一次性任务。首页先行、既有安全边界及资产基准保持。**
+
+> **2026-11-25 优先级修订：暂停其他七页视觉改造，先完成批准 V3.0 工作台首页。首页技术工艺依据为 [HOMEPAGE_ASSET_MOTION_IMPLEMENTATION.md](HOMEPAGE_ASSET_MOTION_IMPLEMENTATION.md)，包含具体素材制作软件、Blender 制作流程、Qt Shader/动画接线和验收。以下旧页面开发顺序仅作历史交接，不得作为当前任务执行；素材登记和安全约束仍有效。**
 
 本文件替代初版视觉候选登记，仍是设计交接和开发任务，而非 PRD 或发布验收。产品负责人要求保留原首页及原有高保真动漫玻璃拟态方向，不采用后来生成的简化 HTML 排版图。首页原图不改。**独立高保真页面候选现有 3/7；其余 4 页仅有拼图参考，尚未完成独立效果图。** 视觉方向认可不等于每页最终验收或素材再分发许可。
 
